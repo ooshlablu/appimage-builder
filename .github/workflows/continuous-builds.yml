@@ -50,9 +50,10 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y uv python3-minimal python3-virtualenv python3-pip python3-setuptools patchelf desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace git
+          sudo apt-get install -y python3-minimal python3-virtualenv python3-pip python3-setuptools patchelf desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace git
           sudo wget https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
           sudo chmod +x /usr/local/bin/appimagetool
+          sudo pip install uv
       - uses: actions/checkout@v3
       - name: Set up the virtualenv
         run: |
