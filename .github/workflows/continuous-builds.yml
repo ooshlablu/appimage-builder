@@ -53,27 +53,30 @@ jobs:
           sudo apt-get install -y python3-minimal python3-virtualenv python3-pip python3-setuptools patchelf desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace git
           sudo wget https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
           sudo chmod +x /usr/local/bin/appimagetool
-          sudo pip install uv
+          #sudo pip install uv
       - uses: actions/checkout@v3
       - name: Set up the virtualenv
         run: |
-          uv venv --python 3.11
-          #virtualenv venv
+          #uv venv --python 3.11
+          virtualenv venv
       #- name: Activate virtual environment
       #run: echo PATH=${GITHUB_WORKSPACE}/venv/bin:$PATH >> $GITHUB_ENV
       - name: Install appimage-builder
         run: |
-          . .venv/bin/activate
+          #. .venv/bin/activate
+          . venv/bin/activate
           python3 -m ensurepip
           git config --global --add safe.directory $PWD
           git fetch --prune --unshallow
           python3 -m pip install --ignore-installed .
       - name: Build AppImage
         run: |
-          . .venv/bin/activate
+          #. .venv/bin/activate
+          . venv/bin/activate
           cd recipes/appimage-builder
           appimage-builder --version
           export APPIMAGE_BUILDER_VERSION=$(appimage-builder --version | head -1 | cut -f 2 -d" ")
+          echo ${APPIMAGE_BUILDER_VERSION}
           appimage-builder --skip-test
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
