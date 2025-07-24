@@ -75,12 +75,11 @@ jobs:
           . venv/bin/activate
           cd recipes/appimage-builder
           appimage-builder --version
-          #export APPIMAGE_BUILDER_VERSION=$(appimage-builder --version | head -1 | cut -f 2 -d" ")
-          export APPIMAGE_BUILDER_VERSION='10000000.10000.100'
-          echo ${APPIMAGE_BUILDER_VERSION}
-          #appimage-builder --skip-test
-          appimage-builder --generate ./
-          #appimage-builder
+          export APPIMAGE_BUILDER_VERSION=$(appimage-builder --version | head -1 | cut -f 2 -d" ")
+          #export APPIMAGE_BUILDER_VERSION='10000000.10000.100'
+          #echo ${APPIMAGE_BUILDER_VERSION}
+          ls -lha
+          appimage-builder --skip-test
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
