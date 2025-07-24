@@ -64,7 +64,7 @@ jobs:
           export APPIMAGE_BUILDER_VERSION=$(appimage-builder --version | head -1 | cut -f 2 -d" ")
           appimage-builder --skip-test
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v4
         with:
           name: appimage-builder
           path: 'recipes/appimage-builder/appimage-builder*.AppImage*'
@@ -91,7 +91,7 @@ jobs:
         run: |
           recipes/bash/*.AppImage --appimage-extract-and-run -c "echo Hello World"
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v4
         with:
           name: bash
           path: 'recipes/bash/*.AppImage*'
