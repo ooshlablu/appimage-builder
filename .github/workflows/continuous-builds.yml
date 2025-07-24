@@ -64,7 +64,7 @@ jobs:
           . venv/bin/activate
           git config --global --add safe.directory $PWD
           git fetch --prune --unshallow
-          sudo python3 -m pip install .
+          sudo python3 -m pip install --ignore-installed .
       - name: Build AppImage
         run: |
           . venv/bin/activate
