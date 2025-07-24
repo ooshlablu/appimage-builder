@@ -34,19 +34,19 @@ AppDir:
 
   test:
     debian:
-      image: appimagecrafters/tests-env:debian-stable
+      image: Lord-Kamina/tests-env:debian-bookworm
       command: "./AppRun --version"
     centos:
-      image: appimagecrafters/tests-env:centos-7
+      image: Lord-Kamina/tests-env:centos-10
       command: "./AppRun --version"
     arch:
-      image: appimagecrafters/tests-env:archlinux-latest
+      image: Lord-Kamina/tests-env:archlinux-latest
       command: "./AppRun --version"
     fedora:
-      image: appimagecrafters/tests-env:fedora-30
+      image: Lord-Kamina/tests-env:fedora-42
       command: "./AppRun --version"
     ubuntu:
-      image: appimagecrafters/tests-env:ubuntu-xenial
+      image: Lord-Kamina/tests-env:ubuntu-noble
       command: "./AppRun --version"
 
 

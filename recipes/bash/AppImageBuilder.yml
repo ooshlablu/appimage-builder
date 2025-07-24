@@ -19,8 +19,8 @@ AppDir:
     arch: [ amd64, i386 ]
     allow_unauthenticated: true
     sources:
-      - sourceline: 'deb http://archive.ubuntu.com/ubuntu bionic main'
-        key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3b4fe6acc0b21f32'
+      - sourceline: 'deb http://archive.ubuntu.com/ubuntu noble main'
+        key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920d1991bc93c'
 
     include:
       - bash
@@ -48,20 +48,20 @@ AppDir:
 
   test:
     debian:
-      image: appimagecrafters/tests-env:debian-stable
+      image: Lord-Kamina/tests-env:debian-bookworm
       before_command: "pwd"
       command: "./AppRun ./run_tests.sh"
     centos:
-      image: appimagecrafters/tests-env:centos-7
+      image: Lord-Kamina/tests-env:centos-10
       command: "./AppRun ./run_tests.sh"
     arch:
-      image: appimagecrafters/tests-env:archlinux-latest
+      image: Lord-Kamina/tests-env:archlinux-latest
       command: "./AppRun ./run_tests.sh"
     fedora:
-      image: appimagecrafters/tests-env:fedora-30
+      image: Lord-Kamina/tests-env:fedora-42
       command: "./AppRun ./run_tests.sh"
     ubuntu:
-      image: appimagecrafters/tests-env:ubuntu-xenial
+      image: Lord-Kamina/tests-env:ubuntu-noble
       command: "./AppRun ./run_tests.sh"
 
 
