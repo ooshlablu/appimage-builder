@@ -56,11 +56,14 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install appimage-builder
         run: |
+          virtualenv venv
+          . venv/bin/activate
           git config --global --add safe.directory $PWD
           git fetch --prune --unshallow
           sudo python3 -m pip install .
       - name: Build AppImage
         run: |
+          . venv/bin/activate
           cd recipes/appimage-builder
           export APPIMAGE_BUILDER_VERSION=$(appimage-builder --version | head -1 | cut -f 2 -d" ")
           appimage-builder --skip-test
