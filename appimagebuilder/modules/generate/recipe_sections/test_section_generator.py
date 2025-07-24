@@ -14,11 +14,11 @@
 class TestSectionGenerator:
     def __init__(self):
         self.docker_images = [
-            "appimagecrafters/tests-env:fedora-30",
-            "appimagecrafters/tests-env:debian-stable",
-            "appimagecrafters/tests-env:archlinux-latest",
-            "appimagecrafters/tests-env:centos-7",
-            "appimagecrafters/tests-env:ubuntu-xenial",
+            "Lord-Kamina/tests-env:fedora-42",
+            "Lord-Kamina/tests-env:debian-bookworm",
+            "Lord-Kamina/tests-env:archlinux-latest",
+            "Lord-Kamina/tests-env:centos-10",
+            "Lord-Kamina/tests-env:ubuntu-noble",
         ]
 
     def generate(self):
