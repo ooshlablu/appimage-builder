@@ -156,7 +156,7 @@ class Venv:
         return _proc
 
     def update(self) -> None:
-        command = "apt-get update"
+        command = "apt-get -y update"
         self.logger.info(command)
 
         _proc = subprocess.run(command, shell=True, env=self._get_environment())
