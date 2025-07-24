@@ -70,7 +70,7 @@ jobs:
           python3 -m pip install --ignore-installed .
       - name: Build AppImage
         run: |
-          . venv/bin/activate
+          . .venv/bin/activate
           cd recipes/appimage-builder
           export APPIMAGE_BUILDER_VERSION=$(appimage-builder --version | head -1 | cut -f 2 -d" ")
           appimage-builder --skip-test
