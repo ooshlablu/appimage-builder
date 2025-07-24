@@ -58,7 +58,7 @@ jobs:
         run: |
           git config --global --add safe.directory $PWD
           git fetch --prune --unshallow
-          sudo python3.11 -m pip install .
+          sudo python3 -m pip install .
       - name: Build AppImage
         run: |
           cd recipes/appimage-builder
