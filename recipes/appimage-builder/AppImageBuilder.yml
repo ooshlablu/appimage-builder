@@ -51,6 +51,7 @@ AppDir:
     python3 -m pip install --ignore-installed --prefix=/usr --root="$TARGET_APPDIR" certifi
 
   runtime:
+    debug: true
     version: "continuous"
     env:
       # Set python home
