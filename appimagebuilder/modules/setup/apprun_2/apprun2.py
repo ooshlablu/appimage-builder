@@ -28,6 +28,7 @@ import random
 import shutil
 import string
 from pathlib import Path
+from sys import version_info
 from typing import Final
 
 from packaging import version
@@ -60,6 +61,7 @@ class AppRunV2Setup:
     def __init__(self, context: Context, finder: Finder):
         self.context = context
         recipe = context.recipe
+        os.environ["APPIMAGE_BUILDER_PYTHON_VERSION"] = rf"{version_info.major}.{version_info.minor}"
 
         self.appdir_path = self.context.app_dir
         self.main_exec = recipe.AppDir.app_info.exec()
