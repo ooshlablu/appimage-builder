@@ -100,7 +100,7 @@ class AppImagePrimer(BasePrimer):
 
     def _get_appimage_kit_runtime(self):
         url = (
-            "https://github.com/AppImage/appimagetool/releases/download/continuous/runtime-%s"
+            "https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-%s"
             % self.bundle_main_arch
         )
         logging.info("Downloading: %s" % url)
