@@ -44,7 +44,7 @@ AppDir:
     # configure tools 
     mkdir -p $TARGET_APPDIR/bin
     ln -s fakeroot-sysv $TARGET_APPDIR/usr/bin/fakeroot
-    ln -s bash $TARGET_APPDIR/bin/sh
+    ln -s bash $TARGET_APPDIR/bin/bash
 
     # install appimage-builder
     python3 -m pip install --ignore-installed --prefix=/usr --root="$TARGET_APPDIR" ../../

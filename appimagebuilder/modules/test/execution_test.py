@@ -47,7 +47,7 @@ class ExecutionTest:
 
         container = self.client.containers.run(
             self.image,
-            "/bin/sh",
+            "/bin/bash",
             working_dir="/app",
             volumes=volumes,
             environment=environment,
