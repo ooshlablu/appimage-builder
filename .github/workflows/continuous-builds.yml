@@ -98,7 +98,7 @@ jobs:
       - name: Install appimage-builder
         run: |
           sudo pip install setuptools twine
-          pip install --ignore-installed --use-pep517 .
+          sudo pip install --ignore-installed --use-pep517 .
       - name: Build AppImage
         run: |
           cd recipes/appimage-builder

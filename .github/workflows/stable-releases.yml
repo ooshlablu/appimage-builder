@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
       - name: Install appimage-builder
         run: |
-          pip install --use-pep517 .
+          sudo pip install --use-pep517 .
       - name: Build AppImage
         run: |
           cd recipes/appimage-builder
