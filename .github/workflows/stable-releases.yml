@@ -85,11 +85,11 @@ jobs:
       - name: Install dependencies
         run: |
           sudo pip install --upgrade pip
-          sudo pip install setuptools wheel twine
+          sudo pip install setuptools twine
       - name: Build and publish
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
-          python3 setup.py sdist bdist_wheel
+          python3 -m build
           twine upload dist/*

@@ -97,7 +97,7 @@ jobs:
           fetch-depth: 0
       - name: Install appimage-builder
         run: |
-          sudo pip install setuptools wheel twine
+          sudo pip install setuptools twine
           sudo pip install --ignore-installed --use-pep517 .
       - name: Build AppImage
         run: |
