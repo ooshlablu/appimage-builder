@@ -47,8 +47,8 @@ AppDir:
     ln -s bash $TARGET_APPDIR/bin/bash
 
     # install appimage-builder
-    python3 -m pip install --ignore-installed --prefix=/usr --root="$TARGET_APPDIR" ../../
-    python3 -m pip install --ignore-installed --prefix=/usr --root="$TARGET_APPDIR" certifi
+    python3 -m pip install --ignore-installed --prefix=/usr --root="$TARGET_APPDIR" --use-pep517 ../../
+    python3 -m pip install --ignore-installed --prefix=/usr --root="$TARGET_APPDIR" --use-pep517 certifi
 
   runtime:
     debug: true
