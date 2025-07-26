@@ -39,6 +39,7 @@ class ExecutablesPatcher:
 
     def _register_interpreter_used_in_shebang(self, executable_path, shebang):
         interpreter_path = self.read_interpreter_path_from_shebang(shebang)
+        print("shebang: " + str(shebang) + ", executable_path: " + str(executable_path) + "interpreter_path: " + str(interpreter_path))
         self.script_interpreters_paths[executable_path] = interpreter_path
 
     @staticmethod

@@ -321,6 +321,7 @@ class AppRunV2Setup:
 
     def _link_interpreters_from_runtimes(self, used_interpreters_paths: dict):
         exported_interpreters = set()
+        print("used_interpreters_paths: " + str(used_interpreters_paths))
         for exec_path, interp_path in used_interpreters_paths.items():
             if interp_path not in exported_interpreters:
                 exported_interpreters.add(interp_path)
@@ -328,6 +329,8 @@ class AppRunV2Setup:
                 compat_path = self.compat_runtime_path / interp_path
                 default_path = self.default_runtime_path / interp_path
 
+                print("compat_path: " + str(compat_path))
+                print("default_path: " + str(default_path))
                 compat_path.parent.mkdir(parents=True, exist_ok=True)
                 default_path.parent.mkdir(parents=True, exist_ok=True)
 
