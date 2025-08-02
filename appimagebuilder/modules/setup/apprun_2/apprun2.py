@@ -94,6 +94,25 @@ class AppRunV2Setup:
 
     def setup(self):
         self.move_glibc_to_compat_runtime()
+        ubuntu_compat_linker_folder = self.compat_runtime_path / "lib64"
+
+        if ubuntu_compat_linker_folder.exists():
+            logging.info(
+                "Linker expected under %s for Ubuntu; path should be a symlink..."
+                % ubuntu_compat_linker_folder.__str__()
+            )
+            if ubuntu_compat_linker_folder.is_file():
+                logging.info("Unlinking file at %s" % ubuntu_compat_linker_folder.__str__())
+                ubuntu_compat_linker_folder.unlink()
+            elif not ubuntu_compat_linker_folder.is_symlink() and ubuntu_compat_linker_folder.is_directory():
+                logging.info("Removing directory at %s" % ubuntu_compat_linker_folder.__str__())
+                shutil.rmtree(ubuntu_compat_linker_folder)
+        logging.info(
+            "Creating symlink to %s at %s"
+            % (self.compat_runtime_path / "usr/lib64", ubuntu_compat_linker_folder.__str__())
+        )
+        ubuntu_compat_linker_folder.symlink_to(self.compat_runtime_path / "usr/lib64")
+
         runtime_env = self._configure_runtime_environment()
 
         scanner = ExecutablesScanner(self.appdir_path, self.finder)
