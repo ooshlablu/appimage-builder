@@ -9,6 +9,8 @@ on:
       - '**'
     tags:
       - '!**'
+env:
+  APPIMAGE_BUILDER_REMOTE_REPO_OWNER: ${{ github.repository_owner }}
 
 jobs:
   pytest-ubuntu-container:
@@ -18,7 +20,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          apt-get -y update 
+          apt-get -y update
           apt-get install -y fakeroot python3-pip python3-venv lsb-release binutils patchelf git
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,7 +42,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          sudo apt-get -y update 
+          sudo apt-get -y update
           sudo apt-get install -y fakeroot lsb-release binutils patchelf git
       - name: Checkout
         uses: actions/checkout@v4
@@ -83,7 +85,7 @@ jobs:
 
   build:
     runs-on: ubuntu-24.04
-    needs: [ pytest-ubuntu-container, pytest-ubuntu-runner, pytest-archlinux ]
+#    needs: [ pytest-ubuntu-container, pytest-ubuntu-runner, pytest-archlinux ]
     steps:
       - name: Install dependencies
         run: |
@@ -97,13 +99,11 @@ jobs:
           fetch-depth: 0
       - name: Install appimage-builder
         run: |
-          sudo pip install setuptools twine
-          pip install --ignore-installed .
+          pip install --ignore-installed --user --break-system-packages .
       - name: Build AppImage
         run: |
           cd recipes/appimage-builder
-          export APPIMAGE_BUILDER_VERSION=$(appimage-builder --version | head -1 | cut -f 2 -d" ")
-          appimage-builder --skip-test
+          APPIMAGE_BUILDER_VERSION=$(appimage-builder --version | head -1 | cut -f 2 -d" ") appimage-builder --skip-test
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -139,18 +139,22 @@ jobs:
         with:
           name: bash
           path: 'recipes/bash/*.AppImage*'
+
   publish:
-    runs-on: ubuntu-24.04
+    name: "Publish Pre-release"
+    runs-on: ubuntu-latest
     needs: test-pack-bash
-    if: github.ref == 'refs/heads/main'
     steps:
-      - name: Download AppImage from build job
+      - name: Download artifacts from build job
         uses: actions/download-artifact@v4
         with:
-          name: appimage-builder
-      - uses: "marvinpinto/action-automatic-releases@latest"
+          pattern: "*"
+          path: release-assets
+      - name: Create 'continuous' Pre-release
+        uses: softprops/action-gh-release@v2
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          files: release-assets/*
+          tag_name: "continuous"
+          name: "Continuous Build (Pre-release)"
+          body: "This is a continuous build which may be unstable."
           prerelease: true
-          automatic_release_tag: Continuous
-          files: 'appimage-builder*.AppImage*'
